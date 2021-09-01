@@ -1,0 +1,26 @@
+{
+  "items": [
+    {
+      "id": "1",
+      "title":"Apple iphone 12",
+      "price": 999,
+      "color": "Red",
+      "quantity": 1
+    },
+    {
+      "id": "2",
+      "title":"Apple iphone 12",
+      "price": 999,
+      "color": "Red",
+      "quantity": 1
+    },
+    {
+      "id": "3",
+      "title":"Apple iphone 12",
+      "price": 999,
+      "color": "Red",
+      "quantity": 1
+    }
+
+  ]
+}
