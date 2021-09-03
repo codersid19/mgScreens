@@ -40,6 +40,10 @@ class _InvoicePageState extends State<InvoicePage> {
     totalCost = cost;
   }
 
+  void codeScanner() {
+    print('Tapped');
+  }
+
   @override
   void initState() {
     super.initState();
@@ -75,7 +79,10 @@ class _InvoicePageState extends State<InvoicePage> {
                     Positioned(
                       bottom: 11,
                       right: 6,
-                      child: Image.asset('assets/Vector.png'),
+                      child: InkWell(
+                        child: Image.asset('assets/Vector.png'),
+                        onTap: codeScanner,
+                      ),
                     )
                   ],
                 ),
@@ -119,45 +126,50 @@ class _InvoicePageState extends State<InvoicePage> {
                           SizedBox(
                             width: getProportionateScreenHeight(40),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(_items[index]["title"],
-                                  style: TextStyle(
-                                      color: Color(0xff000000),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold)),
-                              Text(
-                                '\$${_items[index]["price"]} \n${_items[index]["color"]}',
-                                style: TextStyle(
-                                    color: Color(0xff666565), fontSize: 18),
-                              ),
-                              SizedBox(
-                                height: getProportionateScreenHeight(10),
-                              ),
-                              Row(
-                                children: [
-                                  Icon(Icons.remove_circle_outline_outlined),
-                                  SizedBox(
-                                    width: getProportionateScreenHeight(18),
-                                  ),
-                                  Text(_items[index]["quantity"].toString(),
-                                      style: TextStyle(
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(_items[index]["title"],
+                                    style: TextStyle(
                                         color: Color(0xff000000),
                                         fontSize: 18,
-                                      )),
-                                  SizedBox(
-                                    width: getProportionateScreenHeight(3),
+                                        fontWeight: FontWeight.bold)),
+                                Text(
+                                  '\$${_items[index]["price"]} \n${_items[index]["color"]}',
+                                  style: TextStyle(
+                                      color: Color(0xff666565), fontSize: 18),
+                                ),
+                                SizedBox(
+                                  height: getProportionateScreenHeight(10),
+                                ),
+                                Expanded(
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                          Icons.remove_circle_outline_outlined),
+                                      SizedBox(
+                                        width: getProportionateScreenHeight(18),
+                                      ),
+                                      Text(_items[index]["quantity"].toString(),
+                                          style: TextStyle(
+                                            color: Color(0xff000000),
+                                            fontSize: 18,
+                                          )),
+                                      SizedBox(
+                                        width: getProportionateScreenHeight(3),
+                                      ),
+                                      IconButton(
+                                        icon: Icon(
+                                            Icons.add_circle_outline_outlined),
+                                        onPressed: () {},
+                                      ),
+                                    ],
                                   ),
-                                  IconButton(
-                                    icon:
-                                        Icon(Icons.add_circle_outline_outlined),
-                                    onPressed: () {},
-                                  ),
-                                ],
-                              ),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
                           SizedBox(
                             height: getProportionateScreenHeight(30),
