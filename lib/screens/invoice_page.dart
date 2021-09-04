@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 class InvoicePage extends StatefulWidget {
   //const InvoicePage({Key key}) : super(key: key);
@@ -12,6 +13,7 @@ class InvoicePage extends StatefulWidget {
 class _InvoicePageState extends State<InvoicePage> {
   List _items = [];
   int totalCost = 0;
+  String qrCode = 'Unknown';
   double getProportionateScreenHeight(double inputHeight) {
     double screenHeight = MediaQuery.of(context).size.height;
     // 812 is the layout height that designer use
@@ -40,8 +42,26 @@ class _InvoicePageState extends State<InvoicePage> {
     totalCost = cost;
   }
 
-  void codeScanner() {
-    print('Tapped');
+  Future<void> scanQRCode() async {
+    print('Scanning Started');
+    String barcodeScanRes;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+          '#ff6666', 'Cancel', true, ScanMode.QR);
+      print(barcodeScanRes);
+    } on PlatformException {
+      barcodeScanRes = 'Failed to get platform version.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      qrCode = barcodeScanRes;
+    });
   }
 
   @override
@@ -81,7 +101,7 @@ class _InvoicePageState extends State<InvoicePage> {
                       right: 6,
                       child: InkWell(
                         child: Image.asset('assets/Vector.png'),
-                        onTap: codeScanner,
+                        onTap: scanQRCode,
                       ),
                     )
                   ],
