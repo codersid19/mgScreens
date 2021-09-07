@@ -51,6 +51,7 @@ flutter:
     - assets/iphone.png
     - assets/Vector.png
     - assets/Vector2.png
+    - assets/image_icon.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

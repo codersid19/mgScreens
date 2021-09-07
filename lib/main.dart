@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/add_products_page.dart';
 import 'package:flutter_app/screens/invoice_page.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: InvoicePage(),
+      home: AddProductsPage(),
     );
   }
 }
